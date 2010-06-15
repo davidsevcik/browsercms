@@ -1,5 +1,5 @@
-<% page_title "Content Library / List of Versions" %>
-<% @toolbar_title = "List Versions / '#{@block.name}' #{content_type.display_name}" %>
+<% page_title t('Content_Library') + ' / ' + t('List_of_Versions') %>
+<% @toolbar_title = t('List_of_Versions') + " / '#{@block.name}' #{content_type.display_name}" %>
 <% content_for :html_head do %>
 <%= stylesheet_link_tag("cms/content_library") %>
   <% javascript_tag do %>
@@ -40,15 +40,15 @@
   <table id="blocks" class="data">
     <thead>
       <tr>
-        <th colspan="2" class="first"><div class="dividers">Version</div></th>
+        <th colspan="2" class="first"><div class="dividers"><%= t 'Version' %></div></th>
         <th>
-          <div class="dividers">Comment</div>
+          <div class="dividers"><%= t 'Comment' %></div>
         </th>
         <th>
-          <div class="dividers">Date</div>
+          <div class="dividers"><%= t 'Date' %></div>
         </th>
         <th class="last" colspan="2">
-          <div class="dividers">Editor</div>
+          <div class="dividers"><%= t 'Editor' %></div>
         </th>
       </tr>
     </thead>
@@ -60,7 +60,7 @@
             <div class="dividers">
               <%= "v. #{r.version}" %>
               <%= '(LIVE)' if @block.version == r.version %>
-              <%= '<span class="current">(CURRENT)</span>' if i == 0 %>
+              <%= '<span class="current">('+t('CURRENT')+')</span>' if i == 0 %>
             </div>
           </td>
           <td>

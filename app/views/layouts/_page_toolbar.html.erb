@@ -5,7 +5,7 @@
 <%= image_tag "cms/page_toolbar/page_toolbar_r.gif", :style => "float: right;" %>
 <div id="page_toolbar">
   <div id="status_div" class="<%= status %> page_attribute_div">
-    <div class="page_attribute_label">Status:</div>
+    <div class="page_attribute_label"><%= t 'Status' %>:</div>
     <div id="<%= status %>_page_status_container" class="page_attribute_value_container">
       <%= image_tag "cms/page_toolbar/page_toolbar_inset_#{ status }_l.gif", :style => "float: left;" %>
       <div id="page_status" class="page_attribute_value"><%= status %></div>
@@ -13,7 +13,7 @@
     </div>
   </div>
   <div class="page_attribute_div">
-    <div class="page_attribute_label">Section:</div>
+    <div class="page_attribute_label"><%= t 'Section' %>:</div>
     <div class="page_attribute_value_container">
       <%= image_tag "cms/page_toolbar/page_toolbar_inset_l.gif", :style => "float: left;" %>
       <div id="section_link" class="page_attribute_value"><%= link_to h(@page.section.name), cms_sections_path(:page_id => @page), :target => "_top" %></div>
@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="page_attribute_div">
-    <div class="page_attribute_label">Page:</div>
+    <div class="page_attribute_label"><%= t 'Page' %>:</div>
     <div class="page_attribute_value_container">
       <%= image_tag "cms/page_toolbar/page_toolbar_inset_l.gif", :style => "float: left;" %>
       <div class="page_attribute_value"><%= h(@page.name) %></div>
@@ -29,7 +29,7 @@
     </div>
   </div>
   <div class="page_attribute_div">
-    <div class="page_attribute_label">Template:</div>
+    <div class="page_attribute_label"><%= t 'Template' %>:</div>
     <div class="page_attribute_value_container">
       <%= image_tag "cms/page_toolbar/page_toolbar_inset_l.gif", :style => "float: left;" %>
       <div class="page_attribute_value"><%= h(@page.template_name) %></div>
@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="page_attribute_div">
-    <div class="page_attribute_label">Version:</div>
+    <div class="page_attribute_label"><%= t 'Version' %>:</div>
     <div class="page_attribute_value_container">
       <%= image_tag "cms/page_toolbar/page_toolbar_inset_l.gif", :style => "float: left;" %>
       <div class="page_attribute_value"><%= h(@page.version) %><%= ' (LIVE)' if @page.live_version && @page.version == @page.live_version.version %></div>
@@ -98,20 +98,20 @@
         <div class="visual_editor_label">Visual Editor:</div>
         <div class="visual_editor_value_container">
           <% if @mode == "edit" %>
-	    <div><span id="visual_editor_state"<%= ' title="You don\'t have permission to edit this page"' unless current_user.able_to_edit?(@page) %>>ON<%= '*' unless current_user.able_to_edit?(@page) %></span></div>
+	    <div><span id="visual_editor_state"<%= ' title="You don\'t have permission to edit this page"' unless current_user.able_to_edit?(@page) %>><%= t 'ON' %><%= '*' unless current_user.able_to_edit?(@page) %></span></div>
           <% else %>
-	    <div><span id="visual_editor_state">OFF</span></div>
+	    <div><span id="visual_editor_state"><%= t 'OFF' %></span></div>
           <% end %>
         </div>
         <div class="visual_editor_toggle_container">
           <% if @mode == "edit" %>
-          <div class="sm_button"><%= link_to '<span id="visual_editor_action">TURN OFF</span>', url_with_mode(request.referrer, "view"), :target => "_top", :class => "sm_button" %></div>    
+          <div class="sm_button"><%= link_to '<span id="visual_editor_action">'+t('TURN_OFF')+'</span>', url_with_mode(request.referrer, "view"), :target => "_top", :class => "sm_button" %></div>
 	  <% else %>
-          <div class="sm_button"><%= link_to '<span id="visual_editor_action">TURN ON</span>', url_with_mode(request.referrer, "edit"), :target => "_top", :class => "sm_button" %></div>    	  <% end %>
+          <div class="sm_button"><%= link_to '<span id="visual_editor_action">'+t('TURN_ON')+'</span>', url_with_mode(request.referrer, "edit"), :target => "_top", :class => "sm_button" %></div>    	  <% end %>
 	</div>
 <% else %>
 	</div>
-      <%= link_to("<span>View Current Version</span>", @page.path, :class => "button current_version", :target => "_top") %>
+      <%= link_to("<span>#{t 'View_Current_Version'}</span>", @page.path, :class => "button current_version", :target => "_top") %>
     <% end %>
   </div>
 </div>
