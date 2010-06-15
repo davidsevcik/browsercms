@@ -41,7 +41,11 @@ class DynamicView < ActiveRecord::Base
   end
   
   def self.base_path
-    File.join(Rails.root, "tmp", "views")
+    @base_path ||= File.join(Rails.root, "var", "views")
+  end
+
+  def self.base_path=(base_path)
+    @base_path = base_path
   end
   
   def file_name
